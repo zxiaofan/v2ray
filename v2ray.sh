@@ -161,7 +161,7 @@ create_vmess_URL_config() {
 		cat >/etc/v2ray/vmess_qr.json <<-EOF
 			{
 				"v": "2",
-				"ps": "233v2.com_${domain}",
+				"ps": "xf.com_${domain}",
 				"add": "${domain}",
 				"port": "443",
 				"id": "${v2ray_id}",
@@ -175,14 +175,14 @@ create_vmess_URL_config() {
 		EOF
 	elif [[ $v2ray_transport == 33 ]]; then
 		cat >/etc/v2ray/vmess_qr.json <<-EOF
-			vless://${v2ray_id}@${domain}:443?encryption=none&security=tls&type=ws&host=${domain}&path=${_path}#233v2_${domain}
+			vless://${v2ray_id}@${domain}:443?encryption=none&security=tls&type=ws&host=${domain}&path=${_path}#xf_${domain}
 		EOF
 	else
 		[[ -z $ip ]] && get_ip
 		cat >/etc/v2ray/vmess_qr.json <<-EOF
 			{
 				"v": "2",
-				"ps": "233v2.com_${ip}",
+				"ps": "xf.com_${ip}",
 				"add": "${ip}",
 				"port": "${v2ray_port}",
 				"id": "${v2ray_id}",
@@ -2272,7 +2272,7 @@ get_v2ray_config_info_link() {
 	echo
 	create_v2ray_config_text >/tmp/xfblog_v2ray.txt
 	local random=$(echo $RANDOM-$RANDOM-$RANDOM | base64 -w 0)
-	local link=$(curl -s --upload-file /tmp/xfblog_v2ray.txt "https://transfer.sh/${random}_233v2_v2ray.txt")
+	local link=$(curl -s --upload-file /tmp/xfblog_v2ray.txt "https://transfer.sh/${random}_xf_v2ray.txt")
 	if [[ $link ]]; then
 		echo
 		echo "---------- V2Ray 配置信息链接-------------"

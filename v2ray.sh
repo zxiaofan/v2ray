@@ -52,22 +52,22 @@ if [[ $(command -v yum) ]]; then
 
 fi
 
-backup="/etc/v2ray/233blog_v2ray_backup.conf"
+backup="/etc/v2ray/xfblog_v2ray_backup.conf"
 
-if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/zxiaofan/v2ray ]]; then
 
 	. $backup
 
-elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/xfblog_v2ray_backup.txt && -d /etc/v2ray/zxiaofan/v2ray ]]; then
 
-	. /etc/v2ray/233boy/v2ray/tools/v1xx_to_v3xx.sh
+	. /etc/v2ray/zxiaofan/v2ray/tools/v1xx_to_v3xx.sh
 
 else
 	echo -e " 哎呀哎呀…… ${red}出错咯...请重新安装V2Ray${none} ${yellow}~(^_^) ${none}" && exit 1
 fi
 
 if [[ $mark != "v3" ]]; then
-	. /etc/v2ray/233boy/v2ray/tools/v3.sh
+	. /etc/v2ray/zxiaofan/v2ray/tools/v3.sh
 fi
 if [[ $v2ray_transport -ge 18 && $v2ray_transport -ne 33 ]]; then
 	dynamicPort=true
@@ -80,7 +80,7 @@ fi
 uuid=$(cat /proc/sys/kernel/random/uuid)
 old_id="e55c8d17-2cf3-b21a-bcf1-eeacb011ed79"
 v2ray_server_config="/etc/v2ray/config.json"
-v2ray_client_config="/etc/v2ray/233blog_v2ray_config.json"
+v2ray_client_config="/etc/v2ray/xfblog_v2ray_config.json"
 v2ray_pid=$(pgrep -f /usr/bin/v2ray/v2ray)
 caddy_pid=$(pgrep -f /usr/local/bin/caddy)
 _v2ray_sh="/usr/local/sbin/v2ray"
@@ -93,7 +93,7 @@ else
 	v2ray_ver_v5=1
 fi
 
-. /etc/v2ray/233boy/v2ray/src/init.sh
+. /etc/v2ray/zxiaofan/v2ray/src/init.sh
 systemd=true
 # _test=true
 
@@ -416,8 +416,8 @@ shadowsocks_password_config() {
 
 	while :; do
 		echo -e "请输入 "$yellow"Shadowsocks"$none" 密码"
-		read -p "$(echo -e "(默认密码: ${cyan}233blog.com$none)"): " new_sspass
-		[ -z "$new_sspass" ] && new_sspass="233blog.com"
+		read -p "$(echo -e "(默认密码: ${cyan}xfblog.com$none)"): " new_sspass
+		[ -z "$new_sspass" ] && new_sspass="xfblog.com"
 		case $new_sspass in
 		*[/$]*)
 			echo
@@ -478,7 +478,7 @@ change_shadowsocks_port() {
 		case $new_ssport in
 		$ssport)
 			echo
-			echo " 跟当前端口一毛一样....修改个鸡鸡哦"
+			echo " 跟当前端口一毛一样....修改个啥哦"
 			error
 			;;
 		$v2ray_port)
@@ -544,7 +544,7 @@ change_shadowsocks_password() {
 		case $new_sspass in
 		$sspass)
 			echo
-			echo " 跟当前密码一毛一样....修改个鸡鸡哦"
+			echo " 跟当前密码一毛一样....修改个啥哦"
 			error
 			;;
 		*[/$]*)
@@ -591,7 +591,7 @@ change_shadowsocks_ciphers() {
 			new_ssciphers=${ciphers[$ssciphers_opt - 1]}
 			if [[ $new_ssciphers == $ssciphers ]]; then
 				echo
-				echo " 跟当前加密协议一毛一样....修改个鸡鸡哦"
+				echo " 跟当前加密协议一毛一样....修改个啥哦"
 				error && continue
 			fi
 			echo
@@ -754,7 +754,7 @@ change_v2ray_port() {
 			case $v2ray_port_opt in
 			$v2ray_port)
 				echo
-				echo " 哎呀...跟当前端口一毛一样呀...修改个鸡鸡哦"
+				echo " 哎呀...跟当前端口一毛一样呀...修改个啥哦"
 				error
 				;;
 			[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | 6[0-4][0-9][0-9][0-9] | 65[0-4][0-9][0-9] | 655[0-3][0-5])
@@ -862,7 +862,7 @@ change_v2ray_transport() {
 			case $v2ray_transport_opt in
 			$v2ray_transport)
 				echo
-				echo " 哎呀...跟当前传输协议一毛一样呀...修改个鸡鸡哦"
+				echo " 哎呀...跟当前传输协议一毛一样呀...修改个啥哦"
 				error
 				;;
 			4 | 5 | 33)
@@ -969,7 +969,7 @@ tls_config() {
 		echo
 		echo
 		echo -e "请输入一个 ${magenta}正确的域名${none}，一定一定一定要正确，不！能！出！错！"
-		read -p "(例如：233blog.com): " new_domain
+		read -p "(例如：xfblog.com): " new_domain
 		[ -z "$new_domain" ] && error && continue
 		echo
 		echo
@@ -1160,9 +1160,9 @@ path_config_ask() {
 path_config() {
 	echo
 	while :; do
-		echo -e "请输入想要 ${magenta}用来分流的路径 $none , 例如 /233blog , 那么只需要输入 233blog 即可"
-		read -p "$(echo -e "(默认: [${cyan}233blog$none]):")" new_path
-		[[ -z $new_path ]] && new_path="233blog"
+		echo -e "请输入想要 ${magenta}用来分流的路径 $none , 例如 /xfblog , 那么只需要输入 xfblog 即可"
+		read -p "$(echo -e "(默认: [${cyan}xfblog$none]):")" new_path
+		[[ -z $new_path ]] && new_path="xfblog"
 
 		case $new_path in
 		*[/$]*)
@@ -1186,13 +1186,13 @@ path_config() {
 proxy_site_config() {
 	echo
 	while :; do
-		echo -e "请输入 ${magenta}一个正确的 $none ${cyan}网址$none 用来作为 ${cyan}网站的伪装$none , 例如 https://liyafly.com"
-		echo -e "举例...假设你当前的域名是$green $domain $none, 伪装的网址的是 https://liyafly.com"
-		echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://liyafly.com 的内容"
+		echo -e "请输入 ${magenta}一个正确的 $none ${cyan}网址$none 用来作为 ${cyan}网站的伪装$none , 例如 https://www.csdn.net"
+		echo -e "举例...假设你当前的域名是$green $domain $none, 伪装的网址的是 https://www.csdn.net"
+		echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://www.csdn.net 的内容"
 		echo -e "其实就是一个反代...明白就好..."
 		echo -e "如果不能伪装成功...可以使用 v2ray config 修改伪装的网址"
-		read -p "$(echo -e "(默认: [${cyan}https://liyafly.com$none]):")" new_proxy_site
-		[[ -z $new_proxy_site ]] && new_proxy_site="https://liyafly.com"
+		read -p "$(echo -e "(默认: [${cyan}https://www.csdn.net$none]):")" new_proxy_site
+		[[ -z $new_proxy_site ]] && new_proxy_site="https://www.csdn.net"
 
 		case $new_proxy_site in
 		*[#$]*)
@@ -1542,7 +1542,7 @@ change_domain() {
 			[ -z "$new_domain" ] && error && continue
 			if [[ $new_domain == $domain ]]; then
 				echo
-				echo -e " 跟当前域名一毛一样啊...修改个鸡鸡哦"
+				echo -e " 跟当前域名一毛一样啊...修改个啥哦"
 				echo
 				error && continue
 			fi
@@ -1612,14 +1612,14 @@ change_path_config() {
 	if [[ $v2ray_transport == [45] || $v2ray_transport == 33 ]] && [[ $caddy && $is_path ]]; then
 		echo
 		while :; do
-			echo -e "请输入想要 ${magenta}用来分流的路径$none , 例如 /233blog , 那么只需要输入 233blog 即可"
+			echo -e "请输入想要 ${magenta}用来分流的路径$none , 例如 /xfblog , 那么只需要输入 xfblog 即可"
 			read -p "$(echo -e "(当前分流的路径: [${cyan}/${path}$none]):")" new_path
 			[[ -z $new_path ]] && error && continue
 
 			case $new_path in
 			$path)
 				echo
-				echo -e " 大佬...跟 当前分流的路径 一毛一样啊...修改个鸡鸡哦 "
+				echo -e " 大佬...跟 当前分流的路径 一毛一样啊...修改个啥哦 "
 				echo
 				error
 				;;
@@ -1688,9 +1688,9 @@ change_proxy_site_config() {
 	if [[ $v2ray_transport == [45] || $v2ray_transport == 33 ]] && [[ $caddy && $is_path ]]; then
 		echo
 		while :; do
-			echo -e "请输入 ${magenta}一个正确的 $none ${cyan}网址$none 用来作为 ${cyan}网站的伪装$none , 例如 https://liyafly.com"
-			echo -e "举例...你当前的域名是$green $domain $none, 伪装的网址的是 https://liyafly.com"
-			echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://liyafly.com 的内容"
+			echo -e "请输入 ${magenta}一个正确的 $none ${cyan}网址$none 用来作为 ${cyan}网站的伪装$none , 例如 https://www.csdn.net"
+			echo -e "举例...你当前的域名是$green $domain $none, 伪装的网址的是 https://www.csdn.net"
+			echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://www.csdn.net 的内容"
 			echo -e "其实就是一个反代...明白就好..."
 			echo -e "如果不能伪装成功...可以使用 v2ray config 修改伪装的网址"
 			read -p "$(echo -e "(当前伪装的网址: [${cyan}${proxy_site}$none]):")" new_proxy_site
@@ -1850,7 +1850,7 @@ blocked_hosts() {
 		echo
 		echo "备注: 广告拦截是基于 域名 拦截的..所以也许会造成浏览网页的时候出现部分元素留白..或者其他问题"
 		echo
-		echo "反馈问题或请求拦截更多域名: https://github.com/233boy/v2ray/issues"
+		echo "反馈问题或请求拦截更多域名: https://github.com/zxiaofan/v2ray/issues"
 		echo
 		echo -e "当前广告拦截状态: $_info"
 		echo
@@ -1862,7 +1862,7 @@ blocked_hosts() {
 			1)
 				if [[ $ban_ad ]]; then
 					echo
-					echo -e " 大胸弟...难不成你没有看到 (当前广告拦截状态: $_info) 这个帅帅的提示么.....还开启个鸡鸡哦"
+					echo -e " 大胸弟...难不成你没有看到 (当前广告拦截状态: $_info) 这个帅帅的提示么.....还开启个啥哦"
 					echo
 				else
 					echo
@@ -1898,7 +1898,7 @@ blocked_hosts() {
 					echo
 				else
 					echo
-					echo -e " 大胸弟...难不成你没有看到 (当前广告拦截状态: $_info) 这个帅帅的提示么.....还关闭个鸡鸡哦"
+					echo -e " 大胸弟...难不成你没有看到 (当前广告拦截状态: $_info) 这个帅帅的提示么.....还关闭个啥哦"
 					echo
 				fi
 				break
@@ -1920,7 +1920,7 @@ change_v2ray_alterId() {
 		case $new_alterId in
 		$alterId)
 			echo
-			echo -e " 大佬...跟 当前 alterId 一毛一样啊...修改个鸡鸡哦 "
+			echo -e " 大佬...跟 当前 alterId 一毛一样啊...修改个啥哦 "
 			echo
 			error
 			;;
@@ -1955,7 +1955,7 @@ custom_uuid() {
 		case $myuuid in
 		$v2ray_id)
 			echo
-			echo -e " 大佬...跟 当前 UUID 一毛一样啊...修改个鸡鸡哦 "
+			echo -e " 大佬...跟 当前 UUID 一毛一样啊...修改个啥哦 "
 			echo
 			error
 			;;
@@ -2143,15 +2143,15 @@ get_v2ray_config() {
 				echo
 				echo "开始下载....请选择 V2Ray 客户端配置文件保存位置"
 				echo
-				# sz /etc/v2ray/233blog_v2ray.zip
-				local tmpfile="/tmp/233blog_v2ray_config_$RANDOM.json"
+				# sz /etc/v2ray/xfblog_v2ray.zip
+				local tmpfile="/tmp/xfblog_v2ray_config_$RANDOM.json"
 				cp -f $v2ray_client_config $tmpfile
 				sz $tmpfile
 				echo
 				echo
 				echo -e "$green 下载完成咯...$none"
 				echo
-				# echo -e "$yellow 解压密码 = ${cyan}233blog.com$none"
+				# echo -e "$yellow 解压密码 = ${cyan}xfblog.com$none"
 				# echo
 				echo -e "$yellow SOCKS 监听端口 = ${cyan}2333${none}"
 				echo
@@ -2270,9 +2270,9 @@ get_v2ray_config_info_link() {
 	echo
 	echo -e "$green 正在生成链接.... 稍等片刻即可....$none"
 	echo
-	create_v2ray_config_text >/tmp/233blog_v2ray.txt
+	create_v2ray_config_text >/tmp/xfblog_v2ray.txt
 	local random=$(echo $RANDOM-$RANDOM-$RANDOM | base64 -w 0)
-	local link=$(curl -s --upload-file /tmp/233blog_v2ray.txt "https://transfer.sh/${random}_233v2_v2ray.txt")
+	local link=$(curl -s --upload-file /tmp/xfblog_v2ray.txt "https://transfer.sh/${random}_233v2_v2ray.txt")
 	if [[ $link ]]; then
 		echo
 		echo "---------- V2Ray 配置信息链接-------------"
@@ -2290,7 +2290,7 @@ get_v2ray_config_info_link() {
 		echo -e "$red 哎呀呀呀...出错咯...请重试$none"
 		echo
 	fi
-	rm -rf /tmp/233blog_v2ray.txt
+	rm -rf /tmp/xfblog_v2ray.txt
 }
 get_v2ray_config_qr_link() {
 
@@ -2384,9 +2384,9 @@ update_v2ray() {
 }
 update_v2ray.sh() {
 	if [[ $_test ]]; then
-		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/233boy/v2ray/test/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
+		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/zxiaofan/v2ray/test/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
 	else
-		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/233boy/v2ray/master/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
+		local latest_version=$(curl -H 'Cache-Control: no-cache' -s -L "https://raw.githubusercontent.com/zxiaofan/v2ray/master/v2ray.sh" | grep '_version' -m1 | cut -d\" -f2)
 	fi
 
 	if [[ ! $latest_version ]]; then
@@ -2408,9 +2408,9 @@ update_v2ray.sh() {
 		echo
 		echo -e " $green 咦...发现新版本耶....正在拼命更新.......$none"
 		echo
-		cd /etc/v2ray/233boy/v2ray
+		cd /etc/v2ray/zxiaofan/v2ray
 		git pull
-		cp -f /etc/v2ray/233boy/v2ray/v2ray.sh $_v2ray_sh
+		cp -f /etc/v2ray/zxiaofan/v2ray/v2ray.sh $_v2ray_sh
 		chmod +x $_v2ray_sh
 		echo
 		echo -e "$green 更新成功啦...当前 V2Ray 管理脚本 版本: ${cyan}$latest_version$none"
@@ -2614,7 +2614,7 @@ menu() {
 		echo
 		echo "帮助说明: https://233v2.com/post/1/"
 		echo
-		echo "反馈问题: https://github.com/233boy/v2ray/issues"
+		echo "反馈问题: https://github.com/zxiaofan/v2ray/issues"
 		echo
 		echo "TG 频道: https://t.me/tg2333"
 		echo

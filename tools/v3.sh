@@ -93,10 +93,10 @@ socks=
 socks_port=233
 
 #---- Socks 用户名 -----
-socks_username=233blog
+socks_username=xfblog
 
 #---- Socks 密码 -----
-socks_userpass=233blog.com
+socks_userpass=xfblog.com
 
 #---- MTProto -----
 mtproto=
@@ -105,7 +105,7 @@ mtproto=
 mtproto_port=233
 
 #---- MTProto 用户密钥 -----
-mtproto_secret=lalala
+mtproto_secret=xlalaf
 
 #---- 屏蔽 BT -----
 ban_bt=true

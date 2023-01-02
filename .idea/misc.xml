@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FindBugs-IDEA">
+    <detectors>
+      <detector name="DoInsideDoPrivileged" enabled="false" />
+      <detector name="ExplicitSerialization" enabled="false" />
+      <detector name="FindDeadLocalStores" enabled="false" />
+      <detector name="FindFinalizeInvocations" enabled="false" />
+      <detector name="FindRefComparison" enabled="false" />
+      <detector name="FindReturnRef" enabled="false" />
+      <detector name="FindSelfComparison" enabled="false" />
+      <detector name="FindSelfComparison2" enabled="false" />
+      <detector name="InitializationChain" enabled="false" />
+      <detector name="MutableStaticFields" enabled="false" />
+      <detector name="SerializableIdiom" enabled="false" />
+      <detector name="UnreadFields" enabled="false" />
+    </detectors>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -4,6 +4,7 @@ _open_bbr() {
 	echo "net.ipv4.tcp_congestion_control = bbr" >>/etc/sysctl.conf
 	echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
 	sysctl -p >/dev/null 2>&1
+	lsmod | grep bbr
 	echo
 	_green "..由于你的 VPS 内核支持开启 BBR ...已经为你启用 BBR 优化...."
 	echo

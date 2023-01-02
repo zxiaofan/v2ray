@@ -7,7 +7,23 @@ case $v2ray_transport in
 4|33)
 	if [[ $is_path ]]; then
 		cat >/etc/caddy/Caddyfile <<-EOF
+{
+    http_port 1180
+    https_port 443
+}
+(log) {
+    log {
+        output file /var/log/caddy/{args.0}/access.log {
+            roll_size 100MiB
+            roll_local_time
+            roll_keep 10
+            roll_keep_for 2160h
+        }
+    }
+}
 $domain {
+    import log $domain
+
     reverse_proxy $proxy_is {
         header_up Host {upstream_hostport}
         header_up X-Forwarded-Host {host}
@@ -20,6 +36,20 @@ import sites/*
 		EOF
 	else
 		cat >/etc/caddy/Caddyfile <<-EOF
+{
+    http_port 1180
+    https_port 2443
+}
+(log) {
+    log {
+        output file /var/log/caddy/{args.0}/access.log {
+            roll_size 100MiB
+            roll_local_time
+            roll_keep 10
+            roll_keep_for 2160h
+        }
+    }
+}
 $domain {
 	reverse_proxy 127.0.0.1:${v2ray_port}
 }

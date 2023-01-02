@@ -1,5 +1,5 @@
 #!/bin/bash
-backup="/etc/v2ray/233blog_v2ray_backup.txt"
+backup="/etc/v2ray/xfblog_v2ray_backup.txt"
 v2ray_transport=$(sed -n '17p' $backup)
 v2ray_port=$(sed -n '19p' $backup)
 v2ray_id=$(sed -n '21p' $backup)
@@ -28,7 +28,7 @@ if [[ $ws_path_status == "true" ]]; then
 	is_ws_path=true
 fi
 
-cat >/etc/v2ray/233blog_v2ray_backup.conf <<-EOF
+cat >/etc/v2ray/xfblog_v2ray_backup.conf <<-EOF
 # -----------------------------------
 # 警告...请不要修改或删除这个文件...谢谢
 # 警告...请不要修改或删除这个文件...谢谢
@@ -100,10 +100,10 @@ socks=
 socks_port=233
 
 #---- Socks 用户名 -----
-socks_username=233blog
+socks_username=xfblog
 
 #---- Socks 密码 -----
-socks_userpass=233blog.com
+socks_userpass=xfblog.com
 
 #---- MTProto -----
 mtproto=
@@ -112,13 +112,13 @@ mtproto=
 mtproto_port=233
 
 #---- MTProto 用户密钥 -----
-mtproto_secret=lalala
+mtproto_secret=xlalaf
 
 #---- 屏蔽 BT -----
 ban_bt=true
 		EOF
 if [[ -f /usr/local/bin/v2ray ]]; then
-	cp -f /etc/v2ray/233boy/v2ray/v2ray.sh /usr/local/sbin/v2ray
+	cp -f /etc/v2ray/zxiaofan/v2ray/v2ray.sh /usr/local/sbin/v2ray
 	chmod +x /usr/local/sbin/v2ray
 	rm -rf $backup
 	rm -rf /usr/local/bin/v2ray

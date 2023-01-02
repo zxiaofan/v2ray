@@ -69,10 +69,10 @@ else
 fi
 
 uuid=$(cat /proc/sys/kernel/random/uuid)
-old_id="e55c8d17-2cf3-b21a-bcf1-eeacb011ed79"
+old_id="856fca27-7a52-4fce-a8f4-259fd2edddaf"
 v2ray_server_config="/etc/v2ray/config.json"
-v2ray_client_config="/etc/v2ray/233blog_v2ray_config.json"
-backup="/etc/v2ray/233blog_v2ray_backup.conf"
+v2ray_client_config="/etc/v2ray/xfblog_v2ray_config.json"
+backup="/etc/v2ray/xfblog_v2ray_backup.conf"
 _v2ray_sh="/usr/local/sbin/v2ray"
 systemd=true
 # _test=true
@@ -120,7 +120,7 @@ ciphers=(
 )
 
 _load() {
-	local _dir="/etc/v2ray/233boy/v2ray/src/"
+	local _dir="/etc/v2ray/zxiaofan/v2ray/src/"
 	. "${_dir}$@"
 }
 _sys_timezone() {
@@ -329,7 +329,7 @@ tls_config() {
 	while :; do
 		echo
 		echo -e "请输入一个 ${magenta}正确的域名${none}，一定一定一定要正确，不！能！出！错！"
-		read -p "(例如：233blog.com): " domain
+		read -p "(例如：xfblog.com): " domain
 		[ -z "$domain" ] && error && continue
 		echo
 		echo
@@ -453,9 +453,9 @@ path_config_ask() {
 path_config() {
 	echo
 	while :; do
-		echo -e "请输入想要 ${magenta} 用来分流的路径 $none , 例如 /233blog , 那么只需要输入 233blog 即可"
-		read -p "$(echo -e "(默认: [${cyan}233blog$none]):")" path
-		[[ -z $path ]] && path="233blog"
+		echo -e "请输入想要 ${magenta} 用来分流的路径 $none , 例如 /xfblog , 那么只需要输入 xfblog 即可"
+		read -p "$(echo -e "(默认: [${cyan}xfblog$none]):")" path
+		[[ -z $path ]] && path="xfblog"
 
 		case $path in
 		*[/$]*)
@@ -480,13 +480,13 @@ path_config() {
 proxy_site_config() {
 	echo
 	while :; do
-		echo -e "请输入 ${magenta}一个正确的 $none ${cyan}网址$none 用来作为 ${cyan}网站的伪装$none , 例如 https://liyafly.com"
-		echo -e "举例...你当前的域名是 $green$domain$none , 伪装的网址的是 https://liyafly.com"
-		echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://liyafly.com 的内容"
+		echo -e "请输入 ${magenta}一个正确的 $none ${cyan}网址$none 用来作为 ${cyan}网站的伪装$none , 例如 https://www.csdn.net"
+		echo -e "举例...你当前的域名是 $green$domain$none , 伪装的网址的是 https://www.csdn.net"
+		echo -e "然后打开你的域名时候...显示出来的内容就是来自 https://www.csdn.net 的内容"
 		echo -e "其实就是一个反代...明白就好..."
 		echo -e "如果不能伪装成功...可以使用 v2ray config 修改伪装的网址"
-		read -p "$(echo -e "(默认: [${cyan}https://liyafly.com$none]):")" proxy_site
-		[[ -z $proxy_site ]] && proxy_site="https://liyafly.com"
+		read -p "$(echo -e "(默认: [${cyan}https://www.csdn.net$none]):")" proxy_site
+		[[ -z $proxy_site ]] && proxy_site="https://www.csdn.net"
 
 		case $proxy_site in
 		*[#$]*)
@@ -617,8 +617,8 @@ shadowsocks_password_config() {
 
 	while :; do
 		echo -e "请输入 "$yellow"Shadowsocks"$none" 密码"
-		read -p "$(echo -e "(默认密码: ${cyan}233blog.com$none)"): " sspass
-		[ -z "$sspass" ] && sspass="233blog.com"
+		read -p "$(echo -e "(默认密码: ${cyan}xfblog.com$none)"): " sspass
+		[ -z "$sspass" ] && sspass="xfblog.com"
 		case $sspass in
 		*[/$]*)
 			echo
@@ -776,7 +776,15 @@ caddy_config() {
 }
 
 install_v2ray() {
+  echo
+  echo "........... 执行开始 $cmd update -y .........."
+  echo
+
 	$cmd update -y
+
+	echo
+  echo "........... 执行结束 $cmd update -y .........."
+  echo
 	if [[ $cmd == "apt-get" ]]; then
 		$cmd install -y lrzsz git zip unzip curl wget qrencode libcap2-bin dbus
 	else
@@ -798,22 +806,41 @@ install_v2ray() {
 			echo
 			exit 1
 		fi
-		mkdir -p /etc/v2ray/233boy/v2ray
-		cp -rf $(pwd)/* /etc/v2ray/233boy/v2ray
+		mkdir -p /etc/v2ray/zxiaofan/v2ray
+		cp -rf $(pwd)/* /etc/v2ray/zxiaofan/v2ray
 	else
 		pushd /tmp
-		git clone https://github.com/233boy/v2ray -b "$_gitbranch" /etc/v2ray/233boy/v2ray --depth=1
+		git clone https://github.com/zxiaofan/v2ray -b "$_gitbranch" /etc/v2ray/zxiaofan/v2ray --depth=1
 		popd
 
 	fi
 
-	if [[ ! -d /etc/v2ray/233boy/v2ray ]]; then
+	if [[ ! -d /etc/v2ray/zxiaofan/v2ray ]]; then
 		echo
 		echo -e "$red 哎呀呀...克隆脚本仓库出错了...$none"
 		echo
-		echo -e " 温馨提示..... 请尝试自行安装 Git: ${green}$cmd install -y git $none 之后再安装此脚本"
-		echo
-		exit 1
+		echo -e "$red 当前系统信息： $none"
+    lsb_release -a
+		echo -e "$red Centos8 可执行以下指令 $none"
+    echo -e  "pushd /etc/yum.repos.d/"
+    echo -e  "sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*"
+    echo  "sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*"
+    echo  "wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-vault-8.5.2111.repo"
+    echo -e  " yum clean all \n yum makecache \n yum install -y git"
+    echo  "popd"
+
+    echo -e "$red 新开窗口执行完毕 确保 'git clone' 可用后，按 Enter 键继续安装 $none"
+    pause
+
+    pushd /tmp
+		git clone https://github.com/zxiaofan/v2ray -b "$_gitbranch" /etc/v2ray/zxiaofan/v2ray --depth=1
+		popd
+
+		if [[ ! -d /etc/v2ray/zxiaofan/v2ray ]]; then
+		  echo -e " 温馨提示..... 请尝试自行安装 Git: ${green}$cmd install -y git $none 之后再安装此脚本"
+		  echo
+      exit 1
+		fi
 	fi
 
 	# download v2ray file then install
@@ -824,8 +851,8 @@ install_v2ray() {
 }
 
 config() {
-	cp -f /etc/v2ray/233boy/v2ray/config/backup.conf $backup
-	cp -f /etc/v2ray/233boy/v2ray/v2ray.sh $_v2ray_sh
+	cp -f /etc/v2ray/zxiaofan/v2ray/config/backup.conf $backup
+	cp -f /etc/v2ray/zxiaofan/v2ray/v2ray.sh $_v2ray_sh
 	chmod +x $_v2ray_sh
 
 	v2ray_id=$uuid
@@ -866,14 +893,14 @@ backup_config() {
 		sed -i "30s/=10000/=$v2ray_dynamic_port_start_input/; 33s/=20000/=$v2ray_dynamic_port_end_input/" $backup
 	fi
 	if [[ $shadowsocks ]]; then
-		sed -i "42s/=/=true/; 45s/=6666/=$ssport/; 48s/=233blog.com/=$sspass/; 51s/=chacha20-ietf/=$ssciphers/" $backup
+		sed -i "42s/=/=true/; 45s/=6666/=$ssport/; 48s/=xfblog.com/=$sspass/; 51s/=chacha20-ietf/=$ssciphers/" $backup
 	fi
-	[[ $v2ray_transport == [45] || $v2ray_transport == 33 ]] && sed -i "36s/=233blog.com/=$domain/" $backup
+	[[ $v2ray_transport == [45] || $v2ray_transport == 33 ]] && sed -i "36s/=xfblog.com/=$domain/" $backup
 	[[ $caddy ]] && sed -i "39s/=/=true/" $backup
 	[[ $ban_ad ]] && sed -i "54s/=/=true/" $backup
 	if [[ $is_path ]]; then
-		sed -i "57s/=/=true/; 60s/=233blog/=$path/" $backup
-		sed -i "63s#=https://liyafly.com#=$proxy_site#" $backup
+		sed -i "57s/=/=true/; 60s/=xfblog/=$path/" $backup
+		sed -i "63s#=https://www.csdn.net#=$proxy_site#" $backup
 	fi
 }
 
@@ -919,14 +946,14 @@ show_config_info() {
 }
 
 install() {
-	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/zxiaofan/v2ray ]]; then
 		echo
 		echo " 大佬...你已经安装 V2Ray 啦...无需重新安装"
 		echo
 		echo -e " $yellow输入 ${cyan}v2ray${none} $yellow即可管理 V2Ray${none}"
 		echo
 		exit 1
-	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/xfblog_v2ray_backup.txt && -d /etc/v2ray/zxiaofan/v2ray ]]; then
 		echo
 		echo "  如果你需要继续安装.. 请先卸载旧版本"
 		echo
@@ -939,6 +966,7 @@ install() {
 	shadowsocks_config
 	install_info
 	# [[ $caddy ]] && domain_check
+
 	install_v2ray
 	if [[ $caddy || $v2ray_port == "80" ]]; then
 		if [[ $cmd == "yum" ]]; then
@@ -952,8 +980,8 @@ install() {
 	[[ $caddy ]] && install_caddy
 
 	## bbr
-	# _load bbr.sh
-	# _try_enable_bbr
+	_load bbr.sh
+	_try_enable_bbr
 
 	get_ip
 	config
@@ -961,7 +989,7 @@ install() {
 }
 uninstall() {
 
-	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
+	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/zxiaofan/v2ray ]]; then
 		. $backup
 		if [[ $mark ]]; then
 			_load uninstall.sh
@@ -971,13 +999,13 @@ uninstall() {
 			echo
 		fi
 
-	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
+	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/xfblog_v2ray_backup.txt && -d /etc/v2ray/zxiaofan/v2ray ]]; then
 		echo
 		echo -e " $yellow输入 ${cyan}v2ray uninstall${none} $yellow即可卸载${none}"
 		echo
 	else
 		echo -e "
-		$red 大胸弟...你貌似毛有安装 V2Ray ....卸载个鸡鸡哦...$none
+		$red 大胸弟...你貌似毛有安装 V2Ray ....卸载个啥哦...$none
 
 		备注...仅支持卸载使用我 (233v2.com) 提供的 V2Ray 一键安装脚本
 		" && exit 1

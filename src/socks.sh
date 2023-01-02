@@ -204,8 +204,8 @@ socks_port_config() {
 socks_user_config() {
 	echo
 	while :; do
-		read -p "$(echo -e "请输入$yellow用户名$none...(默认用户名: ${cyan}233blog$none)"): " new_socks_username
-		[ -z "$new_socks_username" ] && new_socks_username="233blog"
+		read -p "$(echo -e "请输入$yellow用户名$none...(默认用户名: ${cyan}xfblog$none)"): " new_socks_username
+		[ -z "$new_socks_username" ] && new_socks_username="xfblog"
 		case $new_socks_username in
 		*[/$]* | *\&*)
 			echo
@@ -228,8 +228,8 @@ socks_user_config() {
 socks_pass_config() {
 	echo
 	while :; do
-		read -p "$(echo -e "请输入$yellow密码$none...(默认密码: ${cyan}233blog.com$none)"): " new_socks_userpass
-		[ -z "$new_socks_userpass" ] && new_socks_userpass="233blog.com"
+		read -p "$(echo -e "请输入$yellow密码$none...(默认密码: ${cyan}xfblog.com$none)"): " new_socks_userpass
+		[ -z "$new_socks_userpass" ] && new_socks_userpass="xfblog.com"
 		case $new_socks_userpass in
 		*[/$]* | *\&*)
 			echo
@@ -256,7 +256,7 @@ change_socks_user_config() {
 		case $new_socks_username in
 		$socks_username)
 			echo
-			echo -e " 大佬...跟 当前用户名 一毛一样啊...修改个鸡鸡哦 "
+			echo -e " 大佬...跟 当前用户名 一毛一样啊...修改个啥哦 "
 			echo
 			error
 			;;
@@ -291,7 +291,7 @@ change_socks_pass_config() {
 		case $new_socks_userpass in
 		$socks_userpass)
 			echo
-			echo -e " 大佬...跟 当前密码 一毛一样啊...修改个鸡鸡哦 "
+			echo -e " 大佬...跟 当前密码 一毛一样啊...修改个啥哦 "
 			echo
 			error
 			;;

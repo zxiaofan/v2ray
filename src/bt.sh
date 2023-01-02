@@ -21,7 +21,7 @@ _ban_bt_main() {
 			1)
 				if [[ $ban_bt ]]; then
 					echo
-					echo -e " 大胸弟...难不成你没有看到 (当前 BT 屏蔽状态: $_info) 这个帅帅的提示么.....还开启个鸡鸡哦"
+					echo -e " 大胸弟...难不成你没有看到 (当前 BT 屏蔽状态: $_info) 这个帅帅的提示么.....还开启个啥哦"
 					echo
 				else
 					echo
@@ -57,7 +57,7 @@ _ban_bt_main() {
 					echo
 				else
 					echo
-					echo -e " 大胸弟...难不成你没有看到 (当前 BT 屏蔽状态: $_info) 这个帅帅的提示么.....还关闭个鸡鸡哦"
+					echo -e " 大胸弟...难不成你没有看到 (当前 BT 屏蔽状态: $_info) 这个帅帅的提示么.....还关闭个啥哦"
 					echo
 				fi
 				break

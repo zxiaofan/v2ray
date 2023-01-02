@@ -5,7 +5,7 @@
             "settings": {
                 "vnext": [
                     {
-                        "address": "233blog.com",
+                        "address": "xfblog.com",
                         "port": 2333,
                         "users": [
                             {
@@ -21,12 +21,12 @@
                 "network": "ws",
                 "security": "tls",
                 "tlsSettings": {
-                    "serverName": "233blog.com"
+                    "serverName": "xfblog.com"
                 },
                 "wsSettings": {
-                    "path": "/233blog",
+                    "path": "/xfblog",
                     "headers": {
-                        "Host": "233blog.com"
+                        "Host": "xfblog.com"
                     }
                 }
             },

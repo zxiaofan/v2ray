@@ -14,16 +14,16 @@
 		"network": "h2",
 		"httpSettings": {
 			"host": [
-				"233blog.com" // domain
+				"xfblog.com" // domain
 			],
-			"path": "/233blog" // path
+			"path": "/xfblog" // path
 		},
 		"security": "tls",
 		"tlsSettings": {
 			"certificates": [
 				{
-					"certificateFile": "/etc/v2ray/233boy/v2ray/config/233blog.com.cer",
-					"keyFile": "/etc/v2ray/233boy/v2ray/config/233blog.com.key"
+					"certificateFile": "/etc/v2ray/zxiaofan/v2ray/config/xfblog.com.cer",
+					"keyFile": "/etc/v2ray/zxiaofan/v2ray/config/xfblog.com.key"
 				}
 			]
 		}
